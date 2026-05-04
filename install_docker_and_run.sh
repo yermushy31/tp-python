@@ -118,7 +118,8 @@ fi
 # 7. LAUNCH ML ENVIRONMENT (docker compose)
 # =============================================================================
 section "Launching ML environment"
-
+unzip algo.zip
+cd algo/
 # Look for docker-compose.yml in current directory or one level up
 COMPOSE_FILE=""
 if [[ -f "docker-compose.yml" || -f "docker-compose.yaml" || -f "compose.yml" ]]; then
@@ -128,8 +129,8 @@ elif [[ -f "../docker-compose.yml" || -f "../docker-compose.yaml" ]]; then
 fi
 
 if [[ -z "$COMPOSE_FILE" ]]; then
-    warn "No docker-compose.yml found in current directory — skipping auto-launch."
-    warn "To launch manually, cd into your project folder and run the commands below."
+    info "No docker-compose.yml found in current directory — skipping auto-launch."
+    info "To launch manually, cd into your project folder and run the commands below."
 else
     info "Found docker-compose file — starting containers…"
     cd "$COMPOSE_FILE"
