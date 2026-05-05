@@ -142,26 +142,6 @@ else
     # Show running containers
     section "Container status"
     docker compose ps
-
-    # Run unit tests inside the ml-env container
-    section "Running unit tests"
-    docker compose exec ml-env python -m pytest tests/ -v || warn "Tests failed or tests/ folder not found."
-
-    # Run code quality checks
-    section "Running quality checks"
-    docker compose exec ml-env make quality || warn "Quality checks failed or Makefile not found."
-
-    success "ML environment is up and running."
-    echo ""
-    info "Useful commands:"
-    echo -e "  ${CYAN}docker compose ps${RESET}                               # check container status"
-    echo -e "  ${CYAN}docker compose exec ml-env python main.py${RESET}       # run main.py"
-    echo -e "  ${CYAN}docker compose exec ml-env bash${RESET}                 # open interactive shell"
-    echo -e "  ${CYAN}docker compose exec ml-env python -m pytest tests/ -v${RESET}  # run tests"
-    echo -e "  ${CYAN}docker compose exec ml-env make quality${RESET}         # run quality checks"
-    echo -e "  ${CYAN}docker compose down${RESET}                             # stop containers"
-    echo ""
-    info "Jupyter Lab is available at → http://localhost:8888"
 fi
 
 # =============================================================================
